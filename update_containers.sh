@@ -4,7 +4,10 @@
 compose_files=$(find . -name "docker-compose.yml" -o -name "docker-compose.yaml")
 
 # Take down all containers
-docker compose -f $compose_files down
+for file in $compose_files
+do
+    docker compose -f $file down
+done
 
 # Delete all images
 docker image prune -af
@@ -13,4 +16,7 @@ docker image prune -af
 docker builder prune -af
 
 # Turn up all containers again
-docker compose -f $compose_files up -d --build
+for file in $compose_files
+do
+    docker compose -f $file up -d --build
+done

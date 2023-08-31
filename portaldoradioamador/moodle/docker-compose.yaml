@@ -25,7 +25,7 @@ services:
     ports:
       - '9008:8080'
     env_file:
-      - prod.env
+      - .env
     environment:
       MOODLE_DATABASE_HOST: mariadb
       MOODLE_DATABASE_PORT_NUMBER: 3306

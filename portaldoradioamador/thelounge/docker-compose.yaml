@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  thelounge:
+    image: thelounge/thelounge:latest
+    container_name: thelounge
+    ports:
+      - "9006:9000"
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    volumes:
+      - thelounge_data:/var/opt/thelounge
+
+volumes:
+  thelounge_data: {}

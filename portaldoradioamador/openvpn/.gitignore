@@ -1,0 +1,4 @@
+# Files to ignore for this Docker service
+
+*.ovpn
+openvpn-data/

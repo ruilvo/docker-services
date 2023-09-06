@@ -1,9 +1,12 @@
 [submodule "portaldoradioamador/cloudlog-docker-compose"]
 	path = portaldoradioamador/cloudlog-docker-compose
 	url = https://github.com/ruilvo/cloudlog-docker-compose.git
+	branch = main
 [submodule "portaldoradioamador/dxspider"]
 	path = portaldoradioamador/dxspider
 	url = https://github.com/ruilvo/dxspider-deployment.git
+	branch = master
 [submodule "portaldoradioamador/radioamadorismo-website"]
 	path = portaldoradioamador/radioamadorismo-website
 	url = https://github.com/ruilvo/radioamadorismo-website.git
+	branch = trunk

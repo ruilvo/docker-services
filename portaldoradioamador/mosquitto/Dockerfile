@@ -1,4 +1,5 @@
 FROM eclipse-mosquitto:2
-RUN touch /mosquitto/config/passwd
-RUN chmod 0700 /mosquitto/config/passwd
-RUN chown root:root /mosquitto/config/passwd
+
+# Create and delete user so the file is created with the right permissions
+RUN mosquitto_passwd -c /mosquitto/config/passwd someuser somepassword
+RUN mosquitto_passwd -D /mosquitto/config/passwd someuser

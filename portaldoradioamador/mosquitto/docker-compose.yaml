@@ -18,9 +18,6 @@ services:
       - mosquitto_data:/mosquitto/data
       - mosquitto_log:/mosquitto/log
       - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
-      - /home/portaldoradioamador/ssl.ca:/mosquitto/config/certs/ca.crt
-      - /home/portaldoradioamador/ssl.cert:/mosquitto/config/certs/server.crt
-      - /home/portaldoradioamador/ssl.key:/mosquitto/config/certs/server.key
 
 volumes:
   mosquitto_data: {}

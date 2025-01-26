@@ -17,11 +17,6 @@ services:
     container_name: sftp_server
     ports:
       - "2222:22"
-    environment:
-      SFTP_USER: ${SFTP_USER}
-      SFTP_PASS: ${SFTP_PASS}
-      # SFTP_UID: ${SFTP_UID}
-      # SFTP_GID: ${SFTP_GID}
     volumes:
       - ./html:/home/${SFTP_USER}/uploads
     restart: always

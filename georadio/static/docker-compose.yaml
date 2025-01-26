@@ -1,32 +1,21 @@
-version: '3.8'
-
 services:
   webserver:
-    build:
-      context: ./nginx
+    image: nginx:latest
     container_name: nginx_server
-    volumes:
-      - html:/usr/share/nginx/html
     ports:
-      - "127.0.0.1:9109:80"
+      - "127.0.0.1:9109:80" # Bind to localhost and port 9109
+    volumes:
+      - html_data:/usr/share/nginx/html
     restart: always
 
   sftp:
-    build:
-      context: ./sftp
-      dockerfile: Dockerfile
-      args:
-        SFTP_USER: ${SFTP_USER}
-        SFTP_PASS: ${SFTP_PASS}
-    environment:
-      SFTP_USER: ${SFTP_USER}
-      SFTP_PASS: ${SFTP_PASS}
+    image: atmoz/sftp:latest
     container_name: sftp_server
     ports:
       - "2222:22"
     volumes:
-      - ./html:/home/${SFTP_USER}/uploads
+      - html_data:/home/georadio/upload
     restart: always
 
 volumes:
-  html:
+  html_data:

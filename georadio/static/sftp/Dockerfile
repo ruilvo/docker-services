@@ -5,10 +5,10 @@ ARG SFTP_USER
 ARG SFTP_PASS
 
 # Create the SFTP user with the specified password
-RUN adduser --disabled-password --gecos "" $SFTP_USER && \
-    echo "$SFTP_USER:$SFTP_PASS" | chpasswd && \
-    mkdir -p /home/$SFTP_USER/uploads && \
-    chown -R $SFTP_USER:$SFTP_USER /home/$SFTP_USER/uploads
+RUN adduser --disabled-password --gecos "" $SFTP_USER
+RUN echo "$SFTP_USER:$SFTP_PASS" | chpasswd
+RUN mkdir -p /home/$SFTP_USER/uploads
+RUN chown -R $SFTP_USER:$SFTP_USER /home/$SFTP_USER/uploads
 
 # Expose the SFTP port
 EXPOSE 22

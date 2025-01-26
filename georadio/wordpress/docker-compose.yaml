@@ -27,7 +27,7 @@ services:
       - wordpress_data:/var/www/html
       - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
     ports:
-      - "127.0.0.1:9101:80"
+      - "127.0.0.1:9108:80"
     restart: always
     env_file:
       - .env

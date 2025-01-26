@@ -16,12 +16,10 @@ services:
     ports:
       - "2222:22" # SFTP server listens on port 2222
     volumes:
-      - sftp-data:/home/user/upload
-      - html:/usr/share/nginx/html
+      - html:/home/${SFTP_USER}/upload
     environment:
       SFTP_USERS: ${SFTP_USERS} # Read credentials from the .env file
+    entrypoint: ["/bin/sh", "-c", "USER=$(echo ${SFTP_USERS} | cut -d':' -f1) && mkdir -p /home/${USER}/upload && exec /entrypoint"]
     restart: always
-
 volumes:
   html:
-  sftp-data:

@@ -5,7 +5,7 @@ ARG SFTP_USER
 ARG SFTP_PASS
 
 # Create the SFTP user with the specified password
-RUN useradd --disabled-password --gecos "" $SFTP_USER
+RUN adduser --disabled-password --gecos "" $SFTP_USER
 RUN echo "$SFTP_USER:$SFTP_PASS" | chpasswd
 RUN mkdir -p /home/$SFTP_USER/uploads
 RUN chown -R $SFTP_USER:$SFTP_USER /home/$SFTP_USER/uploads

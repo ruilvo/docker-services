@@ -15,6 +15,8 @@ services:
       - "2222:22"
     volumes:
       - html_data:/home/georadio/upload
+    environment:
+      SFTP_USERS: ${SFTP_USERS} # Read credentials from the .env file
     restart: always
 
 volumes:

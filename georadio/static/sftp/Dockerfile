@@ -18,4 +18,4 @@ RUN chown -R $SFTP_USER:$SFTP_USER /home/$SFTP_USER/uploads
 # Expose the SFTP port
 EXPOSE 22
 
-CMD ["run", "--foreground"]
+ENTRYPOINT ["/entrypoint"]

@@ -1,25 +1,30 @@
-version: "3.8"
+version: '3.8'
 
 services:
   webserver:
-    image: nginx:latest
+    build:
+      context: ./nginx
     container_name: nginx_server
-    ports:
-      - "127.0.0.1:9109:80" # Bind to localhost and port 9109
     volumes:
-      - html:/usr/share/nginx/html:rw
+      - html:/usr/share/nginx/html
+    ports:
+      - "127.0.0.1:9109:80"
     restart: always
 
   sftp:
-    image: atmoz/sftp:latest
+    build:
+      context: ./sftp
     container_name: sftp_server
     ports:
-      - "2222:22" # SFTP server listens on port 2222
-    volumes:
-      - html:/home/${SFTP_USER}/upload
+      - "2222:22"
     environment:
-      SFTP_USERS: ${SFTP_USERS} # Read credentials from the .env file
-    entrypoint: ["/bin/sh", "-c", "USER=$(echo ${SFTP_USERS} | cut -d':' -f1) && mkdir -p /home/${USER}/upload && exec /entrypoint"]
+      SFTP_USER: ${SFTP_USER}
+      SFTP_PASS: ${SFTP_PASS}
+      # SFTP_UID: ${SFTP_UID}
+      # SFTP_GID: ${SFTP_GID}
+    volumes:
+      - ./html:/home/${SFTP_USER}/uploads
     restart: always
+
 volumes:
   html:
